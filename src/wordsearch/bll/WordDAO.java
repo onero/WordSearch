@@ -5,18 +5,20 @@
  */
 package wordsearch.bll;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class WordDAO {
 
-    private static final String DOCUMENT = "D:\\Programmering\\Java\\Netbeans\\WordSearch\\src\\wordsearch\\resource\\brit-a-z.txt";
+    private static final String DOCUMENT = "src\\wordsearch\\resource\\brit-a-z.txt";
 
     /**
-     * Gets all the words from a given file
+     * Gets all the words from DOCUMENT
      *
      * @return
      * @throws java.io.FileNotFoundException
@@ -24,8 +26,9 @@ public class WordDAO {
     public List<String> getAllWords() throws FileNotFoundException {
         ArrayList<String> allLinesInFile = new ArrayList();
         File inputFile = new File(DOCUMENT);
+        BufferedReader br = new BufferedReader(new FileReader(inputFile));
 
-        try (Scanner sc = new Scanner(inputFile)) {
+        try (Scanner sc = new Scanner(br)) {
             while (sc.hasNextLine()) {
                 allLinesInFile.add(sc.nextLine());
             }

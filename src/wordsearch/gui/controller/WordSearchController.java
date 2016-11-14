@@ -5,6 +5,7 @@
  */
 package wordsearch.gui.controller;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -66,7 +67,12 @@ public class WordSearchController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        List<String> allWords = wordManager.getAllWords();
+        try {
+            List<String> allWords = wordManager.getAllWords();
+            listResult.setItems(FXCollections.observableArrayList(allWords));
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
         comboLimitation.setItems(FXCollections.observableArrayList(
                 "10",
                 "20",

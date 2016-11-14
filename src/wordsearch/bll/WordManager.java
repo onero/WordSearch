@@ -22,6 +22,7 @@ public class WordManager {
      * Gets word from a list of String words
      *
      * @return
+     * @throws java.io.FileNotFoundException
      */
     public List<String> getAllWords() throws FileNotFoundException {
         List<String> allWords = wordDAO.getAllWords();

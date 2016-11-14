@@ -13,6 +13,8 @@ import java.util.Scanner;
 
 public class WordDAO {
 
+    private static final String DOCUMENT = "D:\\Programmering\\Java\\Netbeans\\WordSearch\\src\\wordsearch\\resource\\brit-a-z.txt";
+
     /**
      * Gets all the words from a given file
      *
@@ -21,13 +23,13 @@ public class WordDAO {
      */
     public List<String> getAllWords() throws FileNotFoundException {
         ArrayList<String> allLinesInFile = new ArrayList();
-        File inputFile = new File("brit-a-z.txt");
-        try (Scanner wordScanner = new Scanner(inputFile)) {
-            while (wordScanner.hasNext()) {
-                allLinesInFile.add(wordScanner.next());
+        File inputFile = new File(DOCUMENT);
+
+        try (Scanner sc = new Scanner(inputFile)) {
+            while (sc.hasNextLine()) {
+                allLinesInFile.add(sc.nextLine());
             }
-        } catch (FileNotFoundException ex) {
-            System.out.println("Cannot find file" + inputFile);
+            sc.close();
         }
         return allLinesInFile;
     }

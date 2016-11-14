@@ -15,11 +15,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import wordsearch.bll.WordManager;
+import javafx.scene.text.Text;
+import wordsearch.bll.SortCommand;
+import wordsearch.gui.model.WordModel;
 
 /**
  * FXML Controller class
@@ -51,12 +52,14 @@ public class WordSearchController implements Initializable {
     @FXML
     private ListView listResult;
     @FXML
-    private Label lblCount;
+    private Text lblCount;
 
-    private final WordManager wordManager;
+    private final WordModel wordModel;
+
+    private List<String> allWords;
 
     public WordSearchController() {
-        wordManager = new WordManager();
+        wordModel = new WordModel();
     }
 
     /**
@@ -67,12 +70,14 @@ public class WordSearchController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        listResult.setItems(wordModel.getWords());
         try {
-            List<String> allWords = wordManager.getAllWords();
-            listResult.setItems(FXCollections.observableArrayList(allWords));
+            wordModel.reset();
+            updateLabel();
         } catch (FileNotFoundException ex) {
-            System.out.println(ex.getMessage());
+            System.out.println("Serious error!");
         }
+
         comboLimitation.setItems(FXCollections.observableArrayList(
                 "10",
                 "20",
@@ -81,24 +86,71 @@ public class WordSearchController implements Initializable {
         comboLimitation.setVisibleRowCount(4);
     }
 
+    /**
+     * Makes a query for the list of words with the text from txtSearch
+     */
     @FXML
     private void search() {
-
+        SortCommand command = null;
+        String searchWord = txtSearch.getText();
+        boolean caseSensitive = checkCaseSensitive.isSelected();
+        command = checkRadioChoice(command);
+        wordModel.updateSearchWords(searchWord, command, caseSensitive);
+        updateLabel();
     }
 
-    @FXML
-    private void clear() {
+    /**
+     * Get the command chosen from radio button
+     *
+     * @param command
+     * @return
+     */
+    private SortCommand checkRadioChoice(SortCommand command) {
+        if (rbtnBeginsWith.isSelected()) {
+            command = SortCommand.BEGINS_WITH;
+        }
+        if (rbtnContains.isSelected()) {
+            command = SortCommand.CONTAINS;
+        }
+        if (rbtnEndsWith.isSelected()) {
+            command = SortCommand.ENDS_WITH;
+        }
+        if (rbtnExact.isSelected()) {
+            command = SortCommand.EXACT;
+        }
+        return command;
+    }
 
+    /**
+     * Clears the queries and brings back the complete list of words
+     */
+    @FXML
+    private void clear() throws FileNotFoundException {
+        wordModel.reset();
+        updateLabel();
+        txtSearch.setText("");
     }
 
     @FXML
     private void close() {
-
+        System.exit(1);
     }
 
-    @FXML
-    private void filterSearch() {
+    /**
+     * Updates the word count
+     */
+    private void updateLabel() {
+        lblCount.setText("" + wordModel.getWords().size());
+    }
 
+    /**
+     * Limits the amount of results
+     */
+    @FXML
+    private void limitAmount() {
+        search();
+        wordModel.updateMaxResults(Integer.parseInt(comboLimitation.getSelectionModel().getSelectedItem()));
+        updateLabel();
     }
 
 }

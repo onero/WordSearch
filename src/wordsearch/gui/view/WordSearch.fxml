@@ -7,22 +7,26 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="440.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="wordsearch.gui.controller.WordSearchController">
+<AnchorPane id="AnchorPane" prefHeight="440.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wordsearch.gui.controller.WordSearchController">
    <children>
       <TextField fx:id="txtSearch" layoutX="88.0" layoutY="32.0" />
-      <Button fx:id="btnSearch" layoutX="357.0" layoutY="32.0" mnemonicParsing="false" text="Search" />
-      <Button fx:id="btnClear" layoutX="434.0" layoutY="32.0" mnemonicParsing="false" text="Clear" />
+      <Button fx:id="btnSearch" layoutX="357.0" layoutY="32.0" mnemonicParsing="false" onAction="#search" text="Search" />
+      <Button fx:id="btnClear" layoutX="434.0" layoutY="32.0" mnemonicParsing="false" onAction="#clear" text="Clear" />
       <Pane layoutX="357.0" layoutY="100.0" prefHeight="124.0" prefWidth="140.0">
          <children>
-            <RadioButton fx:id="rbtnBeginsWith" layoutX="8.0" layoutY="6.0" mnemonicParsing="false" text="Begins with" />
-            <RadioButton fx:id="rbtnContains" layoutX="8.0" layoutY="35.0" mnemonicParsing="false" text="Contains" />
-            <RadioButton fx:id="rbtnEndsWith" layoutX="8.0" layoutY="71.0" mnemonicParsing="false" text="Ends With" />
-            <RadioButton fx:id="rbtnExact" layoutX="8.0" layoutY="105.0" mnemonicParsing="false" text="Exact" />
+            <RadioButton fx:id="rbtnBeginsWith" layoutX="8.0" layoutY="6.0" mnemonicParsing="false" selected="true" text="Begins with">
+               <toggleGroup>
+                  <ToggleGroup fx:id="searchType" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="rbtnContains" layoutX="8.0" layoutY="35.0" mnemonicParsing="false" text="Contains" toggleGroup="$searchType" />
+            <RadioButton fx:id="rbtnEndsWith" layoutX="8.0" layoutY="71.0" mnemonicParsing="false" text="Ends With" toggleGroup="$searchType" />
+            <RadioButton fx:id="rbtnExact" layoutX="8.0" layoutY="105.0" mnemonicParsing="false" text="Exact" toggleGroup="$searchType" />
          </children>
       </Pane>
       <Label layoutX="368.0" layoutY="73.0" text="Search type">
@@ -41,8 +45,8 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comboLimitation" layoutX="359.0" layoutY="360.0" prefWidth="150.0" />
-      <Button fx:id="btnClose" layoutX="534.0" layoutY="393.0" mnemonicParsing="false" text="Close" />
+      <ComboBox fx:id="comboLimitation" layoutX="359.0" layoutY="360.0" onAction="#limitAmount" prefWidth="150.0" />
+      <Button fx:id="btnClose" layoutX="534.0" layoutY="393.0" mnemonicParsing="false" onAction="#close" text="Close" />
       <ListView fx:id="listResult" layoutX="88.0" layoutY="100.0" prefHeight="301.0" prefWidth="200.0" />
       <Label layoutX="14.0" layoutY="31.0" text="Query">
          <font>
@@ -54,6 +58,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblCount" layoutX="88.0" layoutY="410.0" text="Count" />
+      <Label layoutX="88.0" layoutY="410.0" text="Count:" />
+      <Text fx:id="lblCount" layoutX="129.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
    </children>
 </AnchorPane>

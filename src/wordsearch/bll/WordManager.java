@@ -6,16 +6,18 @@
 package wordsearch.bll;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
+import wordsearch.dal.WordDAO;
 
 public class WordManager {
 
-    private WordDAO wordDAO;
+    private final WordDAO wordDAO;
 
-    //private final ArrayList<String> linesInFile;
+    private List<String> allWords;
+
     public WordManager() {
         wordDAO = new WordDAO();
-        //linesInFile = FileReader.getAllLinesInFile("/resource/brit-a-z.txt");
     }
 
     /**
@@ -25,8 +27,80 @@ public class WordManager {
      * @throws java.io.FileNotFoundException
      */
     public List<String> getAllWords() throws FileNotFoundException {
-        List<String> allWords = wordDAO.getAllWords();
+        allWords = wordDAO.getAllWords();
         return allWords;
     }
 
+    /**
+     * Get search words
+     *
+     * @param searchWord
+     * @return
+     */
+    public ArrayList<String> getAllSearchWords(String searchWord) {
+        ArrayList<String> searchWords = new ArrayList();
+        for (String word : allWords) {
+            if (word.contains(searchWord)) {
+                searchWords.add(word);
+            }
+        }
+        return searchWords;
+    }
+
+    /**
+     * Get words that begin with the query
+     *
+     * @param searchWord
+     * @return
+     */
+    public ArrayList<String> getWordsBeginWith(String searchWord) {
+        ArrayList<String> wordsBeginWith = new ArrayList();
+        for (String word : allWords) {
+            if (word.startsWith(searchWord)) {
+                wordsBeginWith.add(word);
+            }
+        }
+        return wordsBeginWith;
+    }
+
+    /**
+     * Gets words that contain the query
+     *
+     * @param searchWord
+     * @return
+     */
+    public ArrayList<String> getWordsContain(String searchWord) {
+        ArrayList<String> wordsContain = new ArrayList();
+        for (String word : allWords) {
+            if (word.contains(searchWord)) {
+                wordsContain.add(word);
+            }
+        }
+        return wordsContain;
+    }
+
+    /**
+     *
+     * @param searchWord
+     * @return
+     */
+    public ArrayList<String> getWordsEndWith(String searchWord) {
+        ArrayList<String> wordsEndsWith = new ArrayList();
+        for (String word : allWords) {
+            if (word.endsWith(searchWord)) {
+                wordsEndsWith.add(word);
+            }
+        }
+        return wordsEndsWith;
+    }
+
+    public ArrayList<String> getWordsExact(String searchWord) {
+        ArrayList<String> wordsExact = new ArrayList();
+        for (String word : allWords) {
+            if (word.equals(searchWord)) {
+                wordsExact.add(word);
+            }
+        }
+        return wordsExact;
+    }
 }

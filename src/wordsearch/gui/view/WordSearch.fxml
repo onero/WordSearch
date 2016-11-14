@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="440.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60" fx:controller="wordsearch.gui.controller.WordSearchController">
+   <children>
+      <TextField fx:id="txtSearch" layoutX="88.0" layoutY="32.0" />
+      <Button fx:id="btnSearch" layoutX="357.0" layoutY="32.0" mnemonicParsing="false" text="Search" />
+      <Button fx:id="btnClear" layoutX="434.0" layoutY="32.0" mnemonicParsing="false" text="Clear" />
+      <Pane layoutX="357.0" layoutY="100.0" prefHeight="124.0" prefWidth="140.0">
+         <children>
+            <RadioButton fx:id="rbtnBeginsWith" layoutX="8.0" layoutY="6.0" mnemonicParsing="false" text="Begins with" />
+            <RadioButton fx:id="rbtnContains" layoutX="8.0" layoutY="35.0" mnemonicParsing="false" text="Contains" />
+            <RadioButton fx:id="rbtnEndsWith" layoutX="8.0" layoutY="71.0" mnemonicParsing="false" text="Ends With" />
+            <RadioButton fx:id="rbtnExact" layoutX="8.0" layoutY="105.0" mnemonicParsing="false" text="Exact" />
+         </children>
+      </Pane>
+      <Label layoutX="368.0" layoutY="73.0" text="Search type">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="364.0" layoutY="240.0" text="Style">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <CheckBox fx:id="checkCaseSensitive" layoutX="362.0" layoutY="277.0" mnemonicParsing="false" text="Case sensitive" />
+      <Label layoutX="361.0" layoutY="316.0" text="Limitation">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="comboLimitation" layoutX="359.0" layoutY="360.0" prefWidth="150.0" />
+      <Button fx:id="btnClose" layoutX="534.0" layoutY="393.0" mnemonicParsing="false" text="Close" />
+      <ListView fx:id="listResult" layoutX="88.0" layoutY="100.0" prefHeight="301.0" prefWidth="200.0" />
+      <Label layoutX="14.0" layoutY="31.0" text="Query">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="100.0" text="Result">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCount" layoutX="88.0" layoutY="410.0" text="Count" />
+   </children>
+</AnchorPane>

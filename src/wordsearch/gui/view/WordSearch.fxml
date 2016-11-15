@@ -16,8 +16,8 @@
 <AnchorPane id="AnchorPane" prefHeight="440.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wordsearch.gui.controller.WordSearchController">
    <children>
       <TextField fx:id="txtSearch" layoutX="88.0" layoutY="32.0" />
-      <Button fx:id="btnSearch" layoutX="357.0" layoutY="32.0" mnemonicParsing="false" onAction="#search" text="Search" />
-      <Button fx:id="btnClear" layoutX="434.0" layoutY="32.0" mnemonicParsing="false" onAction="#clear" text="Clear" />
+      <Button layoutX="357.0" layoutY="32.0" mnemonicParsing="false" onAction="#search" text="Search" />
+      <Button layoutX="434.0" layoutY="32.0" mnemonicParsing="false" onAction="#clear" text="Clear" />
       <Pane layoutX="357.0" layoutY="100.0" prefHeight="124.0" prefWidth="140.0">
          <children>
             <RadioButton fx:id="rbtnBeginsWith" layoutX="8.0" layoutY="6.0" mnemonicParsing="false" selected="true" text="Begins with">
@@ -46,7 +46,7 @@
          </font>
       </Label>
       <ComboBox fx:id="comboLimitation" layoutX="359.0" layoutY="360.0" onAction="#limitAmount" prefWidth="150.0" />
-      <Button fx:id="btnClose" layoutX="534.0" layoutY="393.0" mnemonicParsing="false" onAction="#close" text="Close" />
+      <Button layoutX="534.0" layoutY="393.0" mnemonicParsing="false" onAction="#close" text="Close" />
       <ListView fx:id="listResult" layoutX="88.0" layoutY="100.0" prefHeight="301.0" prefWidth="200.0" />
       <Label layoutX="14.0" layoutY="31.0" text="Query">
          <font>
@@ -59,6 +59,6 @@
          </font>
       </Label>
       <Label layoutX="88.0" layoutY="410.0" text="Count:" />
-      <Text fx:id="lblCount" layoutX="129.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="lblCount" layoutX="129.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ThisShoudHaveData..." />
    </children>
 </AnchorPane>

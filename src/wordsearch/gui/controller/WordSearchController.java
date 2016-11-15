@@ -7,12 +7,10 @@ package wordsearch.gui.controller;
 
 import java.io.FileNotFoundException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -32,10 +30,6 @@ public class WordSearchController implements Initializable {
     @FXML
     private TextField txtSearch;
     @FXML
-    private Button btnSearch;
-    @FXML
-    private Button btnClear;
-    @FXML
     private RadioButton rbtnBeginsWith;
     @FXML
     private RadioButton rbtnContains;
@@ -48,15 +42,11 @@ public class WordSearchController implements Initializable {
     @FXML
     private ComboBox<String> comboLimitation;
     @FXML
-    private Button btnClose;
-    @FXML
     private ListView listResult;
     @FXML
     private Text lblCount;
 
     private final WordModel wordModel;
-
-    private List<String> allWords;
 
     public WordSearchController() {
         wordModel = new WordModel();

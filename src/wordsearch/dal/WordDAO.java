@@ -3,31 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package wordsearch.bll;
+package wordsearch.dal;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class WordDAO {
 
+    private static final String DOCUMENT = "src\\wordsearch\\resource\\brit-a-z.txt";
+
     /**
-     * Gets all the words from a given file
+     * Gets all the words from DOCUMENT
      *
      * @return
      * @throws java.io.FileNotFoundException
      */
     public List<String> getAllWords() throws FileNotFoundException {
         ArrayList<String> allLinesInFile = new ArrayList();
-        File inputFile = new File("brit-a-z.txt");
-        try (Scanner wordScanner = new Scanner(inputFile)) {
-            while (wordScanner.hasNext()) {
-                allLinesInFile.add(wordScanner.next());
+        File inputFile = new File(DOCUMENT);
+        BufferedReader br = new BufferedReader(new FileReader(inputFile));
+
+        try (Scanner sc = new Scanner(br)) {
+            while (sc.hasNextLine()) {
+                allLinesInFile.add(sc.nextLine());
             }
-        } catch (FileNotFoundException ex) {
-            System.out.println("Cannot find file" + inputFile);
+            sc.close();
         }
         return allLinesInFile;
     }

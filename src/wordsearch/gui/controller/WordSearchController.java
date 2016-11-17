@@ -130,7 +130,12 @@ public class WordSearchController implements Initializable {
      * Updates the word count
      */
     private void updateLabel() {
-        lblCount.setText("" + wordModel.getWords().size());
+        //If the entry in list of words contain NO_RESULT we will show zero results on counter
+        if (!wordModel.getWords().contains(WordModel.NO_RESULT)) {
+            lblCount.setText("" + wordModel.getWords().size());
+        } else {
+            lblCount.setText("0");
+        }
     }
 
     /**

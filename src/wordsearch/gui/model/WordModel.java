@@ -16,6 +16,8 @@ public class WordModel {
     private final WordManager wordManager;
     private final ObservableList<String> items;
 
+    public static final String NO_RESULT = "No result";
+
     public WordModel() {
         wordManager = new WordManager();
         items = FXCollections.observableArrayList();
@@ -79,7 +81,7 @@ public class WordModel {
      */
     public void checkForEmptyList() {
         if (items.isEmpty()) {
-            items.add("No result");
+            items.add(NO_RESULT);
         }
     }
 
